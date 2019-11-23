@@ -1,0 +1,59 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Listar Locales
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+        <div class="col-autor">
+            <a class="btn btn-primary pull-right" href="{% url 'cinema:crear_pelicula' %}">
+                <i class="fa fa-add"></i>Crear Pelicula
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>titulo</th>
+            <th>trailer</th>
+            <th>categoria</th>
+            <th>ImagenP</th>
+            <th>sinospis</th>
+            <th>director</th>
+            <th>idioma</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pelicula in peliculas %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ pelicula.titulo }}</td>
+                <td>{{ pelicula.trailer }}</td>
+                <td>{{ pelicula.categoria }}</td>
+                <td>
+                    <a href="{{ pelicula.imagenP.url }}" target="_blank">Imagen</a>
+                    <img src="{{ pelicula.imagenP.url }}" href="{{ pelicula.imagenP.url }}" class="card-img-top mt-2" alt="">
+                </td>
+                <td>{{ pelicula.sinospis }}</td>
+                <td>{{ pelicula.director }}</td>
+                <td>{{ pelicula.idioma }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <a href="{% url 'cinema:editar_pelicula' pelicula.id %}" class="btn btn-warning">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="{% url 'cinema:eliminar_pelicula' pelicula.id %}" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
