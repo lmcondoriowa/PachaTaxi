@@ -53,9 +53,8 @@ class Viaje(models.Model):
     fecha_inicio = models.DateTimeField(blank=True, null=True)
     fecha_fin = models.DateTimeField(blank=True, null=True)
     conductor = models.ForeignKey('auth.user',on_delete=models.CASCADE,related_name='conductor')
-    puntaje = models.CharField(max_length=10, blank=False, null=False)
+    puntaje = models.CharField(max_length=10)
     estado = models.CharField(max_length=50, blank=False, null=False)
-
     def publish(self):
         self.fecha_Registro = timezone.now()
         self.save()
@@ -71,4 +70,4 @@ class Viaje(models.Model):
         ordering = ['fecha_registro']
 
     def __str__(self):
-        return self.fecha_registro
+        return self.destino

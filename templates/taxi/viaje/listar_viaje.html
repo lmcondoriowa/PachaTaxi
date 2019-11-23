@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}
+    Listar Viajes
+{% endblock %}
+
+{% block content %}
+<div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+        <div class="col-autor">
+            <a class="btn btn-primary pull-right" href="">
+                <i class="fa fa-add"></i>Agregar Destino Favorito
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3 class="one">&nbsp;</h3>
+        </div>
+        <div class="col-autor">
+            <a class="btn btn-primary pull-right" href="{% url 'taxi:crear_viaje' %}">
+                <i class="fa fa-add"></i>Crear Viaje
+            </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nro</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Fecha Registro</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for viaje in viajes %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ viaje.origen }}</td>
+                <td>{{ viaje.destino }}</td>
+                <td>{{ viaje.fecha_registro }}</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <a href="" class="btn btn-warning">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                       <!--- <a href="" class="btn btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>-->
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
